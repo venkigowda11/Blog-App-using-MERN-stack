@@ -23,7 +23,9 @@ const secret = "dekn28f2f2nkf3f2nkfkw92ffn";
 app.listen(4000);
 
 app.use("/uploads", express.static(__dirname + "/uploads"));
-mongoose.connect("mongodb://0.0.0.0:27017/venki");
+mongoose.connect(
+  "mongodb+srv://venkateshmnvenki:Mern!blog11@cluster0.5klblqe.mongodb.net/"
+);
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
