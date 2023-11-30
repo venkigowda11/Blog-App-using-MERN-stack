@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const uploadMiddleware = multer({ dest: "uploads/" });
 const fs = require("fs");
+const path = require("path");
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
@@ -21,6 +22,8 @@ const { error } = require("console");
 const secret = "dekn28f2f2nkf3f2nkfkw92ffn";
 
 app.listen(4000);
+
+app.use("/", express.static(path.join(__dirname, "public")));
 
 app.use("/uploads", express.static(__dirname + "/uploads"));
 mongoose.connect(
