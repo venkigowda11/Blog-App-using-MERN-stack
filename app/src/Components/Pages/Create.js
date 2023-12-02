@@ -17,7 +17,7 @@ export default function Create() {
     data.set("content", content);
     data.set("file", files);
     ev.preventDefault();
-    const response = await fetch("http://blog-app-ten-ebon.vercel.app/post", {
+    const response = await fetch("https://blog-app-ten-ebon.vercel.app/post", {
       method: "POST",
       body: data,
       credentials: "include",

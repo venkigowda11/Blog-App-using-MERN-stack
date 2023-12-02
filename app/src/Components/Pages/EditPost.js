@@ -14,13 +14,15 @@ function EditPost() {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch("http://blog-app-ten-ebon.vercel.app/post/" + id).then((response) => {
-      response.json().then((postInfo) => {
-        setTitle(postInfo.title);
-        setContent(postInfo.content);
-        setSummary(postInfo.summary);
-      });
-    });
+    fetch("https://blog-app-ten-ebon.vercel.app/post/" + id).then(
+      (response) => {
+        response.json().then((postInfo) => {
+          setTitle(postInfo.title);
+          setContent(postInfo.content);
+          setSummary(postInfo.summary);
+        });
+      }
+    );
   }, []);
 
   async function updatePost(ev) {
@@ -34,11 +36,14 @@ function EditPost() {
     }
     data.set("id", id);
     try {
-      const response = await fetch("http://blog-app-ten-ebon.vercel.app/post", {
-        method: "PUT",
-        body: data,
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://blog-app-ten-ebon.vercel.app/post",
+        {
+          method: "PUT",
+          body: data,
+          credentials: "include",
+        }
+      );
       if (response.ok) {
         setRedirect(true);
       }
