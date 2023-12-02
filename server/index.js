@@ -7,7 +7,12 @@ const uploadMiddleware = multer({ dest: "uploads/" });
 const fs = require("fs");
 const path = require("path");
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
