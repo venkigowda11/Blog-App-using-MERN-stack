@@ -7,6 +7,11 @@ const uploadMiddleware = multer({ dest: "uploads/" });
 const fs = require("fs");
 const path = require("path");
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 app.use(
   cors({
     credentials: true,
@@ -14,6 +19,7 @@ app.use(
     methods: ["POST", "GET"],
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 
