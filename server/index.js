@@ -10,7 +10,7 @@ const path = require("path");
 app.use(
   cors({
     credentials: true,
-    origin: "https://blog-app-frontend-three.vercel.app",
+    origin: ["https://blog-app-frontend-three.vercel.app"],
     methods: ["POST", "GET"],
   })
 );
