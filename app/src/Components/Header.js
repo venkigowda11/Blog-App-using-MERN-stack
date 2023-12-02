@@ -24,6 +24,7 @@ function Header() {
     }).then(() => {
       setUserInfo(null);
       navigate("/");
+      window.location.reload();
     });
   }
 
