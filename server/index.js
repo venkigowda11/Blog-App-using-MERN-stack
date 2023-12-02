@@ -10,7 +10,7 @@ const path = require("path");
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "https://blog-app-frontend-three.vercel.app/",
   })
 );
 app.use(express.json());
