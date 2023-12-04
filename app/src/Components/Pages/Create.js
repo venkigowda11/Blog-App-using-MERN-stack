@@ -6,20 +6,35 @@ import { Navigate } from "react-router-dom";
 export default function Create() {
   const [title, setTitle] = useState();
   const [summary, setSummary] = useState();
-  const [content, setContent] = useState();
-  const [files, setFile] = useState();
+  const [contentC, setContent] = useState();
+  const [file, setFile] = useState();
   const [redirect, setRedirect] = useState(false);
 
   async function createNew(ev) {
-    const data = new FormData();
-    data.set("title", title);
-    data.set("summary", summary);
-    data.set("content", content);
-    data.set("file", files);
+    const data1 = new FormData();
+
+    data1.append("file", file);
+    data1.append("upload_preset", "uploads");
     ev.preventDefault();
-    const response = await fetch("https://blog-app-ten-ebon.vercel.app/post", {
+    const uploadRes = await fetch(
+      "https://api.cloudinary.com/v1_1/dvfua7glr/image/upload",
+      {
+        method: "POST",
+        body: data1,
+      }
+    );
+    const uploadResJson = await uploadRes.json();
+
+    const { url } = uploadResJson;
+    const urlC = url;
+    console.log(url);
+
+    const response = await fetch("http://localhost:4000/post", {
       method: "POST",
-      body: data,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, summary, contentC, urlC }),
       credentials: "include",
     });
     console.log(response);
@@ -46,7 +61,7 @@ export default function Create() {
       />
       <input type="file" onChange={(ev) => setFile(ev.target.files[0])} />
       <ReactQuill
-        value={content}
+        value={contentC}
         onChange={(newValue) => setContent(newValue)}
       />
       <button style={{ marginTop: "10px" }}>Create a Post</button>

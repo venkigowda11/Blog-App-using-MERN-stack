@@ -3,9 +3,9 @@ const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
-const uploadMiddleware = multer({ dest: "uploads/" });
 const fs = require("fs");
 const path = require("path");
+const cheerio = require("cheerio");
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -15,8 +15,7 @@ app.use((req, res, next) => {
 app.use(
   cors({
     credentials: true,
-    origin: ["https://blog-app-frontend-three.vercel.app"],
-    methods: ["POST", "GET"],
+    origin: "http://localhost:3000",
   })
 );
 
@@ -35,7 +34,6 @@ const secret = "dekn28f2f2nkf3f2nkfkw92ffn";
 
 app.listen(4000);
 
-app.use("/uploads", express.static(__dirname + "/"));
 mongoose.connect(
   "mongodb+srv://venkateshmnvenki:Mern!blog11@cluster0.5klblqe.mongodb.net/"
 );
@@ -84,22 +82,24 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
 });
 
-app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
-  const { originalname, path } = req.file;
-  const parts = originalname.split(".");
-  const ext = parts[parts.length - 1];
-  const newPath = path + "." + ext;
-  fs.renameSync(path, newPath);
-
+app.post("/post", async (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
-    const { title, summary, content } = req.body;
+    const { title, summary, contentC, urlC } = req.body;
+
+    const contentEdit = contentC;
+    const $ = cheerio.load(contentEdit);
+    const content = $.text();
+
+    const url = urlC.replace(/['"]/g, "");
+
+    console.log(content, url);
     const postDoc = await Post.create({
       title,
       summary,
       content,
-      cover: newPath,
+      url,
       author: info.id,
     });
     res.json(postDoc);
@@ -121,16 +121,7 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc);
 });
 
-app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
-  let newPath = null;
-  if (req.file) {
-    const { originalname, path } = req.file;
-    const parts = originalname.split(".");
-    const ext = parts[parts.length - 1];
-    newPath = path + "." + ext;
-    fs.renameSync(path, newPath);
-  }
-
+app.put("/post", async (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
@@ -142,7 +133,7 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
       title,
       summary,
       content,
-      cover: newPath ? newPath : postDoc.cover,
+      url: newPath ? newPath : postDoc.url,
     });
     res.json({ isAuthor, postDoc, info });
   });

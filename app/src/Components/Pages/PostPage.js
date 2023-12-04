@@ -10,13 +10,11 @@ function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`https://blog-app-ten-ebon.vercel.app/post/${id}`).then(
-      (response) => {
-        response.json().then((postInfo) => {
-          setPostInfo(postInfo);
-        });
-      }
-    );
+    fetch(`http://localhost:4000/post/${id}`).then((response) => {
+      response.json().then((postInfo) => {
+        setPostInfo(postInfo);
+      });
+    });
   }, []);
   if (!postInfo) return "";
 
@@ -38,7 +36,7 @@ function PostPage() {
         <a className=""></a>
       </div>
       <div className="image">
-        <img src={`https://localhost:4000/${postInfo.cover}`} alt="" />
+        <img src={postInfo.url} alt="" />
       </div>
       <div dangerouslySetInnerHTML={{ __html: postInfo.content }}></div>
     </div>

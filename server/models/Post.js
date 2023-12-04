@@ -6,7 +6,7 @@ const PostSchema = new mongoose.Schema(
     title: "String",
     summary: "String",
     content: "String",
-    cover: "String",
+    url: "String",
     author: {
       type: Schema.Types.ObjectId,
       ref: "User",

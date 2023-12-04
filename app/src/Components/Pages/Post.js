@@ -2,12 +2,12 @@
 import { Link } from "react-router-dom";
 
 import { formatISO9075 } from "date-fns";
-function Post({ _id, title, summary, cover, content, createdAt, author }) {
+function Post({ _id, title, summary, url, content, createdAt, author }) {
   return (
     <div className="post">
       <div className="img">
         <Link to={`/post/${_id}`}>
-          <img src={"https://blog-app-ten-ebon.vercel.app/" + cover} alt="" />
+          <img src={url} alt="" />
         </Link>
       </div>
       <div className="texts">
