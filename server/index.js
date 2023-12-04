@@ -35,7 +35,7 @@ const secret = "dekn28f2f2nkf3f2nkfkw92ffn";
 
 app.listen(4000);
 
-app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use("/uploads", express.static(__dirname + "/"));
 mongoose.connect(
   "mongodb+srv://venkateshmnvenki:Mern!blog11@cluster0.5klblqe.mongodb.net/"
 );
