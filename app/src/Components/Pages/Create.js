@@ -29,14 +29,17 @@ export default function Create() {
     const urlC = url;
     console.log(url);
 
-    const response = await fetch("https://blog-app-ten-ebon.vercel.app/post", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, summary, contentC, urlC }),
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://blog-app-ten-ebon.vercel.app/create",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, summary, contentC, urlC }),
+        credentials: "include",
+      }
+    );
     console.log(response);
     if (response.ok) {
       setRedirect(true);
