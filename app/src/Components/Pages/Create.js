@@ -40,6 +40,7 @@ export default function Create() {
         credentials: "include",
       }
     );
+    console.log(url);
     console.log(response);
     if (response.ok) {
       setRedirect(true);
