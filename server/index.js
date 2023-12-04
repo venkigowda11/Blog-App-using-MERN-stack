@@ -35,7 +35,7 @@ const secret = "dekn28f2f2nkf3f2nkfkw92ffn";
 app.listen(4000);
 
 mongoose.connect(
-  "mongodb+srv://venkateshmnvenki:Mern!blog11@cluster0.5klblqe.mongodb.net/"
+  "mongodb+srv://venkateshmnvenki:Mern!blog11@cluster0.5klblqe.mongodb.net/Cluster0?retryWrites=true&w=majority"
 );
 
 app.post("/register", async (req, res) => {
