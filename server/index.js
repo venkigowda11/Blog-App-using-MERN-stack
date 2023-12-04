@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 app.use(
   cors({
     credentials: true,
-    origin: "https://blog-app-frontend-three.vercel.app",
+    origin: ["https://blog-app-frontend-three.vercel.app"],
     methods: ["POST", "GET", "PUT"],
   })
 );
