@@ -34,11 +34,14 @@ function EditPost() {
     }
     data.set("id", id);
     try {
-      const response = await fetch("blog-app-ten-ebon.vercel.app/post", {
-        method: "PUT",
-        body: data,
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://blog-app-ten-ebon.vercel.app/post",
+        {
+          method: "PUT",
+          body: data,
+          credentials: "include",
+        }
+      );
       if (response.ok) {
         setRedirect(true);
       }

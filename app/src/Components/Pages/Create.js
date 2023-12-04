@@ -29,7 +29,7 @@ export default function Create() {
     const urlC = url;
     console.log(url);
 
-    const response = await fetch("blog-app-ten-ebon.vercel.app/post", {
+    const response = await fetch("https://blog-app-ten-ebon.vercel.app/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

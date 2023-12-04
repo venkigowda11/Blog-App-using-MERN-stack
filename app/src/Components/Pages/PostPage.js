@@ -10,11 +10,13 @@ function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`blog-app-ten-ebon.vercel.app/post/${id}`).then((response) => {
-      response.json().then((postInfo) => {
-        setPostInfo(postInfo);
-      });
-    });
+    fetch(`https://blog-app-ten-ebon.vercel.app/post/${id}`).then(
+      (response) => {
+        response.json().then((postInfo) => {
+          setPostInfo(postInfo);
+        });
+      }
+    );
   }, []);
   if (!postInfo) return "";
 
