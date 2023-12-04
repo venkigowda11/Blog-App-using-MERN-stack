@@ -4,7 +4,7 @@ function Register() {
   const [password, setPassword] = useState("");
   async function regist(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:4000/register", {
+    const response = await fetch("blog-app-ten-ebon.vercel.app/register", {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
