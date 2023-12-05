@@ -8,7 +8,7 @@ function Header() {
   const navigate = useNavigate();
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
+    fetch("https://blog-app-ten-ebon.vercel.app/profile", {
       credentials: "include",
       method: "GET",
     }).then((response) => {
