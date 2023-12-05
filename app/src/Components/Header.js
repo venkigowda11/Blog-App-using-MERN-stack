@@ -16,7 +16,7 @@ function Header() {
         setUserInfo(userInfo);
       });
     });
-  }, []);
+  }, [setUserInfo]);
 
   function logout() {
     fetch("https://blog-app-ten-ebon.vercel.app/logout", {
@@ -33,9 +33,9 @@ function Header() {
 
   return (
     <header>
-      <a href="/" className="logo">
+      <Link to="/" className="logo">
         Blogger
-      </a>
+      </Link>
       <nav>
         {username && (
           <>
