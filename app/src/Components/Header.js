@@ -12,7 +12,7 @@ function Header() {
       method: "GET",
     }).then((response) => {
       response.json().then((userInfo) => {
-        setUsername(userInfo.username);
+        setUserInfo(userInfo);
       });
     });
   }, []);
