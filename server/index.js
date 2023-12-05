@@ -70,17 +70,11 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         else {
-          res
-            .cookie("token", token, {
-              httpOnly: true,
-              secure: true,
-              sameSite: "strict",
-            })
-            .json({
-              id: userDoc._id,
-              username,
-              token,
-            });
+          res.cookie("token", token).json({
+            id: userDoc._id,
+            username,
+            token,
+          });
         }
       }
     );
@@ -95,6 +89,7 @@ app.get("/profile", (req, res) => {
   jwt.verify(token, secret, {}, (err, info) => {
     if (err) throw err;
     res.json(info);
+    console.log(info);
   });
 });
 
