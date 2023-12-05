@@ -96,6 +96,21 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
 });
 
+app.get("/post", async (req, res) => {
+  const posts = await Post.find()
+    .populate("author", ["username"])
+    .sort({ createdAt: -1 })
+    .limit(20);
+
+  res.json(posts);
+});
+
+app.get("/post/:id", async (req, res) => {
+  const { id } = req.params;
+  const postDoc = await Post.findById(id).populate("author", ["username"]);
+  res.json(postDoc);
+});
+
 app.post("/post", async (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, async (err, info) => {
@@ -118,21 +133,6 @@ app.post("/post", async (req, res) => {
     });
     res.json(postDoc);
   });
-});
-
-app.get("/post", async (req, res) => {
-  const posts = await Post.find()
-    .populate("author", ["username"])
-    .sort({ createdAt: -1 })
-    .limit(20);
-
-  res.json(posts);
-});
-
-app.get("/post/:id", async (req, res) => {
-  const { id } = req.params;
-  const postDoc = await Post.findById(id).populate("author", ["username"]);
-  res.json(postDoc);
 });
 
 app.put("/post", async (req, res) => {

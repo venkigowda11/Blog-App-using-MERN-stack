@@ -34,7 +34,7 @@ function EditPost() {
     const uploadRes = await fetch(
       "https://api.cloudinary.com/v1_1/dvfua7glr/image/upload",
       {
-        method: "POST",
+        method: "PUT",
         body: data,
       }
     );
