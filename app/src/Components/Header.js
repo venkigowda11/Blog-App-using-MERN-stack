@@ -30,7 +30,7 @@ function Header() {
       }
     };
 
-    const storedToken = document.cookie
+    const storedToken = document.cookies
       .split("; ")
       .find((row) => row.startsWith("token="))
       ?.split("=")[1];
