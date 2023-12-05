@@ -31,7 +31,7 @@ function EditPost() {
   async function updatePost(ev) {
     ev.preventDefault();
 
-    let urlC;
+    let urlCToUpdate;
 
     if (files?.[0]) {
       const data = new FormData();
@@ -46,13 +46,10 @@ function EditPost() {
         }
       );
       const uploadResJson = await uploadRes.json();
-      urlC = uploadResJson.url;
+      urlCToUpdate = uploadResJson.url;
     } else {
-      urlC = urlC;
+      urlCToUpdate = urlC;
     }
-
-    const { url } = uploadResJson;
-    urlC = url;
 
     try {
       const response = await fetch(
