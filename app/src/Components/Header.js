@@ -30,12 +30,14 @@ function Header() {
       }
     };
 
-    // Check for stored token in local storage
-    const storedToken = localStorage.getItem("token");
+    const storedToken = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
+
     console.log("Stored token:", storedToken);
 
     if (storedToken) {
-      // If token exists, fetch user info
       fetchUserInfo();
     }
   }, [setUserInfo]);
