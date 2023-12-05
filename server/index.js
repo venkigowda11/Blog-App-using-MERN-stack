@@ -90,11 +90,8 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  const token =
-    req.cookies.token ||
-    (req.headers.authorization && req.headers.authorization.split(" ")[1]);
-  const decodedToken = jwt.decode(token);
-  console.log(decodedToken);
+  const token = req.headers.authorization.split(" ")[1];
+
   if (!token) {
     return res.status(401).json({ error: "Unauthorized" });
   }
