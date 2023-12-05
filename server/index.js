@@ -90,10 +90,11 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-
-  if (!token) {
-    return res.status(401).json({ error: "Unauthorized" });
+  const bearerHeader = req.headers["authorization"];
+  if (bearerHeader) {
+    const token = bearerHeader.split(" ")[1];
+  } else {
+    res.json(error);
   }
 
   jwt.verify(token, secret, {}, (err, info) => {
