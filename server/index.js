@@ -100,7 +100,7 @@ app.get("/post", async (req, res) => {
   const posts = await Post.find()
     .populate("author", ["username"])
     .sort({ createdAt: -1 })
-    .limit(20);
+    .limit(50);
 
   res.json(posts);
 });
