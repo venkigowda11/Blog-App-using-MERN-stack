@@ -107,8 +107,20 @@ app.get("/post", async (req, res) => {
 
 app.get("/post/:id", async (req, res) => {
   const { id } = req.params;
-  const postDoc = await Post.findById(id).populate("author", ["username"]);
-  res.json(postDoc);
+  try {
+    const postDoc = await Post.findById(id).populate("author", ["username"]);
+
+    if (!postDoc) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    console.log("Retrieved post document:", postDoc);
+
+    res.json(postDoc);
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 app.post("/post", async (req, res) => {

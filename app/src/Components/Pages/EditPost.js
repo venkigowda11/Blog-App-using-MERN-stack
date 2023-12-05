@@ -7,9 +7,9 @@ import "react-quill/dist/quill.snow.css";
 import { useEffect, useState } from "react";
 function EditPost() {
   const { id } = useParams();
-  const [title, setTitle] = useState();
-  const [summary, setSummary] = useState();
-  const [contentC, setContent] = useState();
+  const [title, setTitle] = useState("");
+  const [summary, setSummary] = useState("");
+  const [contentC, setContent] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
 
