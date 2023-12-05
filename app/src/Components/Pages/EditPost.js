@@ -59,7 +59,13 @@ function EditPost() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ title, summary, contentC, urlC, id }),
+          body: JSON.stringify({
+            title,
+            summary,
+            contentC,
+            urlC: urlCToUpdate,
+            id,
+          }),
           credentials: "include",
         }
       );
