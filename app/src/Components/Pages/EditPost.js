@@ -69,14 +69,14 @@ function EditPost() {
   return (
     <form onSubmit={updatePost}>
       <input
-        type="text"
-        placeholder="Title"
+        type="title"
+        placeholder={"Title"}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
       <input
-        type="text"
-        placeholder="Summary"
+        type="summary"
+        placeholder={"Summary"}
         value={summary}
         onChange={(e) => setSummary(e.target.value)}
       />
