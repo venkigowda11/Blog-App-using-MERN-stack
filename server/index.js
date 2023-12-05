@@ -87,6 +87,7 @@ app.get("/profile", (req, res) => {
   const token =
     req.cookies.token ||
     (req.headers.authorization && req.headers.authorization.split(" ")[1]);
+  res.json("token", token);
   if (!token) {
     return res.status(401).json({ error: "Unauthorized" });
   }
