@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 function Register() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   async function regist(e) {
@@ -14,6 +17,7 @@ function Register() {
     );
     if (response.status === 200) {
       alert("Registration succesfull");
+      navigate("/login");
     } else {
       alert("Failed");
     }

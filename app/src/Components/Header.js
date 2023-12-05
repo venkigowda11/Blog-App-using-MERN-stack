@@ -5,6 +5,7 @@ import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
     fetch("https://blog-app-ten-ebon.vercel.app/profile", {
