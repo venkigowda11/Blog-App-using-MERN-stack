@@ -8,22 +8,28 @@ function Header() {
   const navigate = useNavigate();
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
-    fetch("https://blog-app-ten-ebon.vercel.app/profile", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://blog-app-ten-ebon.vercel.app/profile",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
+
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
-      })
-      .then((userInfo) => {
+
+        const userInfo = await response.json();
         setUserInfo(userInfo);
-      })
-      .catch((error) => {
-        console.error("Error fetching user information:", error);
-      });
+      } catch (error) {
+        console.error("Error fetching user information:", error.message);
+      }
+    };
+
+    fetchData();
   }, []);
 
   function logout() {
