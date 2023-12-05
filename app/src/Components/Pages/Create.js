@@ -12,10 +12,10 @@ export default function Create() {
 
   async function createNew(ev) {
     const data1 = new FormData();
-
     data1.append("file", file);
     data1.append("upload_preset", "uploads");
     ev.preventDefault();
+
     const uploadRes = await fetch(
       "https://api.cloudinary.com/v1_1/dvfua7glr/image/upload",
       {
@@ -27,7 +27,6 @@ export default function Create() {
 
     const { url } = uploadResJson;
     const urlC = url;
-    console.log(url);
 
     const response = await fetch("https://blog-app-ten-ebon.vercel.app/post", {
       method: "POST",

@@ -140,14 +140,21 @@ app.put("/post", async (req, res) => {
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
 
-    const { id, title, summary, content } = req.body;
+    const { id, title, summary, contentC, urlC } = req.body;
+
+    const contentEdit = contentC;
+    const $ = cheerio.load(contentEdit);
+    const content = $.text();
+
+    const urlU = urlC.replace(/['"]/g, "");
+
     const postDoc = await Post.findById(id);
     const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
     await postDoc.updateOne({
       title,
       summary,
       content,
-      url: newPath ? newPath : postDoc.url,
+      url: urlU ? urlU : postDoc.url,
     });
     res.json({ isAuthor, postDoc, info });
   });

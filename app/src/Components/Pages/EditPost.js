@@ -9,7 +9,7 @@ function EditPost() {
   const { id } = useParams();
   const [title, setTitle] = useState();
   const [summary, setSummary] = useState();
-  const [content, setContent] = useState();
+  const [contentC, setContent] = useState();
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
 
@@ -25,20 +25,33 @@ function EditPost() {
 
   async function updatePost(ev) {
     ev.preventDefault();
+
     const data = new FormData();
-    data.set("title", title);
-    data.set("summary", summary);
-    data.set("content", content);
     if (files?.[0]) {
-      data.set("file", files?.[0]);
+      data.append("file", files?.[0]);
+      data.append("upload_preset", "uploads");
     }
-    data.set("id", id);
+    const uploadRes = await fetch(
+      "https://api.cloudinary.com/v1_1/dvfua7glr/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const uploadResJson = await uploadRes.json();
+
+    const { url } = uploadResJson;
+    const urlC = url;
+
     try {
       const response = await fetch(
         "https://blog-app-ten-ebon.vercel.app/post",
         {
           method: "PUT",
-          body: data,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title, summary, contentC, urlC, id }),
           credentials: "include",
         }
       );
@@ -69,7 +82,7 @@ function EditPost() {
       />
       <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
       <ReactQuill
-        value={content}
+        value={contentC}
         onChange={(newValue) => setContent(newValue)}
       />
       <button style={{ marginTop: "10px" }}>update Post</button>
