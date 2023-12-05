@@ -73,6 +73,7 @@ app.post("/login", async (req, res) => {
           res.cookie("token", token, { httpOnly: true }).json({
             id: userDoc._id,
             username,
+            token,
           });
         }
       }
