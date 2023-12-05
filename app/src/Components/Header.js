@@ -40,7 +40,7 @@ function Header() {
     if (storedToken) {
       fetchUserInfo();
     }
-  }, [setUserInfo]);
+  }, []);
 
   function logout() {
     fetch("https://blog-app-ten-ebon.vercel.app/logout", {
