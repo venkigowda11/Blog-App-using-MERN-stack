@@ -11,11 +11,19 @@ function Header() {
     fetch("https://blog-app-ten-ebon.vercel.app/profile", {
       method: "GET",
       credentials: "include",
-    }).then((response) => {
-      response.json().then((userInfo) => {
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((userInfo) => {
         setUserInfo(userInfo);
+      })
+      .catch((error) => {
+        console.error("Error fetching user information:", error);
       });
-    });
   }, []);
 
   function logout() {
