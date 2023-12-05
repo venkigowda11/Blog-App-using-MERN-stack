@@ -21,7 +21,7 @@ function EditPost() {
         setTitle(postInfo.title);
         setContent(postInfo.content);
         setSummary(postInfo.summary);
-        setUrlC(postInfo.url);
+        setUrlC(postInfo.url || "");
       })
       .catch((error) => {
         console.error("Error fetching post:", error);
