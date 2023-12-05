@@ -77,7 +77,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  const { token } = req.cookies.token || req.headers.authorization;
+  const token = req.cookies.token || req.headers.authorization;
   if (!token) {
     return res.status(401).json({ error: "Unauthorized" });
   }
