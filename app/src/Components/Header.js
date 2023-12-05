@@ -14,6 +14,7 @@ function Header() {
     }).then((response) => {
       response.json().then((userInfo) => {
         setUserInfo(userInfo);
+        console.log(userInfo);
       });
     });
   }, []);
