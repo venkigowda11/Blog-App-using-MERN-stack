@@ -8,14 +8,22 @@ function Header() {
   const navigate = useNavigate();
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
-    fetch("https://blog-app-ten-ebon.vercel.app/profile", {
-      credentials: "include",
-      method: "GET",
-    }).then((response) => {
-      response.json().then((userInfo) => {
-        setUserInfo(userInfo);
+    const fetchUser = async () => {
+      fetch("https://blog-app-ten-ebon.vercel.app/profile", {
+        credentials: "include",
+        method: "GET",
+      }).then((response) => {
+        response.json().then((userInfo) => {
+          setUserInfo(userInfo);
+        });
       });
-    });
+    };
+
+    const storedToken = localStorage.getItem("token");
+
+    if (storedToken) {
+      fetchUser();
+    }
   }, [setUserInfo]);
 
   function logout() {
