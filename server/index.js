@@ -22,6 +22,7 @@ app.use(
     credentials: true,
     origin: ["https://blog-app-frontend-three.vercel.app"],
     methods: ["POST", "GET", "PUT"],
+    allowedHeaders: "Content-Type",
   })
 );
 
