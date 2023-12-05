@@ -14,14 +14,17 @@ function EditPost() {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch("blog-app-ten-ebon.vercel.app/post/" + id).then((response) => {
-      response.json().then((postInfo) => {
+    fetch("https://blog-app-ten-ebon.vercel.app/post/" + id)
+      .then((response) => response.json())
+      .then((postInfo) => {
         setTitle(postInfo.title);
         setContent(postInfo.content);
         setSummary(postInfo.summary);
+      })
+      .catch((error) => {
+        console.error("Error fetching post:", error);
       });
-    });
-  }, []);
+  }, [id]);
 
   async function updatePost(ev) {
     ev.preventDefault();
