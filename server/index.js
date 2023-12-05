@@ -125,7 +125,7 @@ app.get("/post", async (req, res) => {
     .populate("author", ["username"])
     .sort({ createdAt: -1 })
     .limit(20);
-  console.log(posts);
+
   res.json(posts);
 });
 
