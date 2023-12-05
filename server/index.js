@@ -62,28 +62,38 @@ app.post("/login", async (req, res) => {
   const userDoc = await User.findOne({ username });
   const passOk = bcrypt.compareSync(password, userDoc.password);
   if (passOk) {
-    jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
-      if (err) throw err;
-      else {
-        res.cookie("token", token, { httpOnly: true }).json({
-          id: userDoc._id,
-          username,
-        });
+    jwt.sign(
+      { username, id: userDoc._id },
+      secret,
+      { expiresIn: "1h" },
+      (err, token) => {
+        if (err) throw err;
+        else {
+          res.cookie("token", token, { httpOnly: true }).json({
+            id: userDoc._id,
+            username,
+          });
+        }
       }
-    });
+    );
   } else {
     res.status(400).json("Wrong credentials");
   }
 });
 
 app.get("/profile", (req, res) => {
-  const token = req.cookies.token || req.headers.authorization;
+  const token =
+    req.cookies.token ||
+    (req.headers.authorization && req.headers.authorization.split(" ")[1]);
   if (!token) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
   jwt.verify(token, secret, {}, (err, info) => {
-    if (err) throw err;
+    if (err) {
+      console.error("JWT verification error:", err.message);
+      return res.status(401).json({ error: "Unauthorized" });
+    }
     res.json(info);
   });
 });
