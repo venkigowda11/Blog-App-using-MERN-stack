@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
-const fs = require("fs");
+
 const path = require("path");
 const cheerio = require("cheerio");
 
