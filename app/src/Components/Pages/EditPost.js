@@ -12,6 +12,7 @@ function EditPost() {
   const [contentC, setContent] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [urlC, setUrlC] = useState("");
 
   useEffect(() => {
     fetch("https://blog-app-ten-ebon.vercel.app/post/" + id)
@@ -20,6 +21,7 @@ function EditPost() {
         setTitle(postInfo.title);
         setContent(postInfo.content);
         setSummary(postInfo.summary);
+        setUrlC(postInfo.url);
       })
       .catch((error) => {
         console.error("Error fetching post:", error);
@@ -29,22 +31,28 @@ function EditPost() {
   async function updatePost(ev) {
     ev.preventDefault();
 
-    const data = new FormData();
+    let urlC;
+
     if (files?.[0]) {
-      data.append("file", files?.[0]);
+      const data = new FormData();
+      data.append("file", files[0]);
       data.append("upload_preset", "uploads");
+
+      const uploadRes = await fetch(
+        "https://api.cloudinary.com/v1_1/dvfua7glr/image/upload",
+        {
+          method: "PUT",
+          body: data,
+        }
+      );
+      const uploadResJson = await uploadRes.json();
+      urlC = uploadResJson.url;
+    } else {
+      urlC = urlC;
     }
-    const uploadRes = await fetch(
-      "https://api.cloudinary.com/v1_1/dvfua7glr/image/upload",
-      {
-        method: "PUT",
-        body: data,
-      }
-    );
-    const uploadResJson = await uploadRes.json();
 
     const { url } = uploadResJson;
-    const urlC = url;
+    urlC = url;
 
     try {
       const response = await fetch(
