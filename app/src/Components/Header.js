@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Link } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
 
@@ -8,28 +8,14 @@ function Header() {
   const navigate = useNavigate();
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://blog-app-ten-ebon.vercel.app/profile",
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const userInfo = await response.json();
+    fetch("http://localhost:4000/profile", {
+      credentials: "include",
+      method: "GET",
+    }).then((response) => {
+      response.json().then((userInfo) => {
         setUserInfo(userInfo);
-      } catch (error) {
-        console.error("Error fetching user information:", error.message);
-      }
-    };
-
-    fetchData();
+      });
+    });
   }, []);
 
   function logout() {

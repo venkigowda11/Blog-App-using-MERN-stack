@@ -90,15 +90,9 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  const bearerHeader = req.headers["authorization"];
-  const token = bearerHeader.split(" ")[1];
-  console.log(token);
-
+  const { token } = req.cookies;
   jwt.verify(token, secret, {}, (err, info) => {
-    if (err) {
-      console.error("JWT verification error:", err.message);
-      return res.status(401).json({ error: "Unauthorized" });
-    }
+    if (err) throw err;
     res.json(info);
   });
 });
