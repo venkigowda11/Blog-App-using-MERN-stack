@@ -8,21 +8,35 @@ function Header() {
   const navigate = useNavigate();
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
-    const fetchUser = async () => {
-      fetch("https://blog-app-ten-ebon.vercel.app/profile", {
-        credentials: "include",
-        method: "GET",
-      }).then((response) => {
-        response.json().then((userInfo) => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch(
+          "https://blog-app-ten-ebon.vercel.app/profile",
+          {
+            credentials: "include",
+            method: "GET",
+          }
+        );
+
+        if (response.ok) {
+          const userInfo = await response.json();
+          console.log("User info fetched:", userInfo);
           setUserInfo(userInfo);
-        });
-      });
+        } else {
+          console.log("Failed to fetch user info. Status:", response.status);
+        }
+      } catch (error) {
+        console.error("Error fetching user information:", error);
+      }
     };
 
+    // Check for stored token in local storage
     const storedToken = localStorage.getItem("token");
+    console.log("Stored token:", storedToken);
 
     if (storedToken) {
-      fetchUser();
+      // If token exists, fetch user info
+      fetchUserInfo();
     }
   }, [setUserInfo]);
 
