@@ -91,11 +91,8 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", (req, res) => {
   const bearerHeader = req.headers["authorization"];
-  if (bearerHeader) {
-    const token = bearerHeader.split(" ")[1];
-  } else {
-    res.json(error);
-  }
+  const token = bearerHeader.split(" ")[1];
+  console.log(token);
 
   jwt.verify(token, secret, {}, (err, info) => {
     if (err) {
