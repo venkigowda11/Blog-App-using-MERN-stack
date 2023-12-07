@@ -1,12 +1,11 @@
 /* eslint-disable */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
-import { useNavigate } from "react-router-dom";
 
 function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,6 +38,7 @@ function Header() {
       method: "POST",
     }).then(() => {
       setUserInfo(null);
+      navigate("/");
     });
   }
 
