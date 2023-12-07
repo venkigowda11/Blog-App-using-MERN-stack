@@ -53,30 +53,27 @@ function Header() {
         Blogger
       </Link>
       <nav>
-        {loading ? (
-          <p>Loading...</p> // Replace with your loading indicator or spinner component
-        ) : (
-          <>
-            {username && (
-              <>
-                <span
-                  className="hello"
-                  style={{ marginRight: "30px", color: "#706F5E" }}
-                >
-                  Hello {username}
-                </span>
-                <Link to="/create">Create Post</Link>
-                <Link onClick={logout}>Logout</Link>
-              </>
-            )}
-            {!username && (
-              <>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
-              </>
-            )}
-          </>
-        )}
+        <>
+          {username && (
+            <>
+              <span
+                className="hello"
+                style={{ marginRight: "30px", color: "#706F5E" }}
+              >
+                Hello {username}
+              </span>
+              <Link to="/create">Create Post</Link>
+              <Link onClick={logout}>Logout</Link>
+            </>
+          )}
+          {!username && (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
+            </>
+          )}
+        </>
+        {loading ? <p>Loading...</p> : ""}
       </nav>
     </header>
   );
