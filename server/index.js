@@ -177,6 +177,5 @@ app.put("/post", async (req, res) => {
 
 app.post("/logout", (req, res) => {
   res.clearCookie("token");
-  res.setHeader("Cache-Control", "no-store"); // This line will execute
-  res.json("Logged out"); // This line will execute
+  res.json("Logged out");
 });
