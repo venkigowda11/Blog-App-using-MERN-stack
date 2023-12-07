@@ -87,8 +87,7 @@ app.get("/profile", (req, res) => {
 
   jwt.verify(token, secret, {}, (err, info) => {
     if (err) throw err;
-    res.json("infoo", info);
-    console.log(info);
+    res.json(info);
   });
 });
 
