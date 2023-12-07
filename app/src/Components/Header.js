@@ -41,7 +41,6 @@ function Header() {
       method: "POST",
     }).then(() => {
       setUserInfo(null);
-      navigate("/");
     });
   }
 
