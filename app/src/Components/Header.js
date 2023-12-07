@@ -5,8 +5,6 @@ import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
-  const navigate = useNavigate();
-
   const { setUserInfo, userInfo } = useContext(UserContext);
 
   const [loading, setLoading] = useState(true);
