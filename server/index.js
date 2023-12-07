@@ -80,8 +80,11 @@ app.get("/profile", (req, res) => {
   const token = req.cookies.token;
 
   if (!token) {
+    console.error("No token found in cookies");
     return res.status(401).json("Unauthorized");
   }
+
+  console.log("Token found in cookies:", token);
 
   jwt.verify(token, secret, (err, info) => {
     if (err) {
