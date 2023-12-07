@@ -32,14 +32,16 @@ function Header() {
     fetchData();
   }, []);
 
-  function logout() {
-    fetch("https://blog-app-ten-ebon.vercel.app/logout", {
-      credentials: "include",
-      method: "POST",
-    }).then(() => {
+  async function logout() {
+    try {
+      await fetch("https://blog-app-ten-ebon.vercel.app/logout", {
+        credentials: "include",
+        method: "POST",
+      });
       setUserInfo(null);
-      navigate("/");
-    });
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
   }
 
   const username = userInfo?.username;
