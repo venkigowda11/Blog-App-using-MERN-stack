@@ -12,8 +12,8 @@ function Header() {
     fetch("https://blog-app-ten-ebon.vercel.app/profile", {
       credentials: "include",
     }).then((response) => {
-      response.json().then((userInfo1) => {
-        setUserInfo(userInfo1);
+      response.json().then((userInfo) => {
+        setUserInfo(userInfo);
       });
     });
   }, []);
