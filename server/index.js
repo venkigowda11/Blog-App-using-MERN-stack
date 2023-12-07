@@ -89,11 +89,6 @@ app.get("/profile", (req, res) => {
     return res.status(401).json("Unauthorized");
   }
 
-  console.log("Token found in cookies:", token);
-
-  const decodedToken = jwt.decode(token, { complete: true });
-  console.log("Decoded Token:", decodedToken);
-
   jwt.verify(token, secret, { ignoreExpiration: false }, (err, info) => {
     if (err) {
       console.error("Token verification error:", err);
