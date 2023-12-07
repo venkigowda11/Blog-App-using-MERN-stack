@@ -7,6 +7,11 @@ const multer = require("multer");
 const path = require("path");
 const cheerio = require("cheerio");
 
+var redis = require("redis");
+var JWTR = require("jwt-redis").default;
+var redisClient = redis.createClient();
+var jwtr = new JWTR(redisClient);
+
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
@@ -176,6 +181,6 @@ app.put("/post", async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  res.clearCookie("token", { expires: new Date(0) });
-  res.json("Logged out");
+  const token = req.cookies.token;
+  jwtr.destroy(token);
 });
