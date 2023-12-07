@@ -80,14 +80,19 @@ app.post("/login", async (req, res) => {
 app.get("/profile", (req, res) => {
   const token = req.cookies.token;
 
-  jwt.verify(token, secret, {}, (err, info) => {
-    if (err) throw err;
+  if (!token) {
+    return res.status(401).json("Unauthorized");
+  }
+
+  jwt.verify(token, secret, (err, info) => {
+    if (err) {
+      // Handle token verification error
+      return res.status(401).json("Unauthorized");
+    }
+
+    // Successfully verified, send user information
     res.json(info);
   });
-});
-
-app.post("/logout", (req, res) => {
-  res.cookie("token", "").json("ok");
 });
 
 app.get("/post", async (req, res) => {
