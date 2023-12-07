@@ -15,6 +15,7 @@ function Header() {
         setUserInfo(userInfo);
       });
     });
+    console.log("In");
   }, []);
 
   function logout() {
