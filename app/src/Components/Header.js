@@ -42,8 +42,8 @@ function Header() {
     })();
 
     console.log("Stored token:", storedToken);
-
-    if (storedToken) {
+    let ans = storedToken();
+    if (ans) {
       fetchUserInfo();
     }
   }, []);
