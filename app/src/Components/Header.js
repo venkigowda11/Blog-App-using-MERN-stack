@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 function Header() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
+
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
     fetch("https://blog-app-ten-ebon.vercel.app/profile", {
       credentials: "include",
     }).then((response) => {
-      response.json().then((userInfo) => {
-        setUserInfo(userInfo);
+      response.json().then((userInfo1) => {
+        setUserInfo(userInfo1);
       });
     });
   }, []);
