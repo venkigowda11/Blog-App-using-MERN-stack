@@ -8,15 +8,31 @@ function Header() {
   const navigate = useNavigate();
 
   const { setUserInfo, userInfo } = useContext(UserContext);
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    fetch("https://blog-app-ten-ebon.vercel.app/profile", {
-      method: "GET",
-      credentials: "include",
-    }).then((response) => {
-      response.json().then((userInfo) => {
-        setUserInfo(userInfo);
-      });
-    });
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          "https://blog-app-ten-ebon.vercel.app/profile",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
+
+        const userData = await response.json();
+        setUserInfo(userData);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   function logout() {
@@ -37,22 +53,28 @@ function Header() {
         Blogger
       </Link>
       <nav>
-        {username && (
+        {loading ? (
+          <p>Loading...</p> // Replace with your loading indicator or spinner component
+        ) : (
           <>
-            <span
-              className="hello"
-              style={{ marginRight: "30px", color: "#706F5E" }}
-            >
-              Hello {username}
-            </span>
-            <Link to="/create">Create Post</Link>
-            <Link onClick={logout}>Logout</Link>
-          </>
-        )}
-        {!username && (
-          <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            {username && (
+              <>
+                <span
+                  className="hello"
+                  style={{ marginRight: "30px", color: "#706F5E" }}
+                >
+                  Hello {username}
+                </span>
+                <Link to="/create">Create Post</Link>
+                <Link onClick={logout}>Logout</Link>
+              </>
+            )}
+            {!username && (
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>
+            )}
           </>
         )}
       </nav>
