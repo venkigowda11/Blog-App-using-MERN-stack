@@ -90,6 +90,7 @@ app.get("/profile", (req, res) => {
     if (err) {
       return res.status(401).json("Unauthorized");
     }
+    console.log(info);
     res.json(info);
   });
 });
