@@ -11,8 +11,8 @@ function Header() {
     fetch("http://localhost:4000/profile", {
       credentials: "include",
     }).then((response) => {
-      response.json().then((userInfo) => {
-        setUserInfo(userInfo);
+      response.json().then((userInfo1) => {
+        setUserInfo(userInfo1);
       });
     });
     console.log("In");
