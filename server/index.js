@@ -86,11 +86,8 @@ app.get("/profile", (req, res) => {
 
   jwt.verify(token, secret, (err, info) => {
     if (err) {
-      // Handle token verification error
       return res.status(401).json("Unauthorized");
     }
-
-    // Successfully verified, send user information
     res.json(info);
   });
 });
