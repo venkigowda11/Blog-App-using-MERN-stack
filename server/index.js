@@ -174,3 +174,7 @@ app.put("/post", async (req, res) => {
     res.json({ isAuthor, postDoc, info });
   });
 });
+
+app.post("/logout", (req, res) => {
+  res.cookie("token", "").json("ok");
+});
