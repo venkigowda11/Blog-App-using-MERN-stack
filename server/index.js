@@ -70,7 +70,7 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         else {
-          res.cookie("token", token, { sameSite: "None" }).json({
+          res.cookie("token", token, { sameSite: "None", secure: true }).json({
             id: userDoc._id,
             username,
           });
@@ -80,27 +80,6 @@ app.post("/login", async (req, res) => {
   } else {
     res.status(400).json("Wrong credentials");
   }
-});
-
-app.get("/profile", (req, res) => {
-  const token = req.cookies.token;
-
-  if (!token) {
-    // Handle the case where no token is provided
-    return res.status(401).json({ error: "Unauthorized - No token provided" });
-  }
-
-  jwt.verify(token, secret, {}, (err, info) => {
-    if (err) {
-      // Handle token verification failure
-      console.error("Token verification failed:", err);
-      return res.status(401).json({ error: "Unauthorized - Invalid token" });
-    }
-
-    // Token is valid, respond with decoded user information
-    res.json(info);
-    console.log("Decoded user information:", info);
-  });
 });
 
 app.post("/logout", (req, res) => {
