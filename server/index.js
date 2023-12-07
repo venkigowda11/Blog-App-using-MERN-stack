@@ -181,6 +181,5 @@ app.put("/post", async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  const token = req.cookies.token;
-  jwtr.destroy(token);
+  res.cookie("token", "").json("ok");
 });
