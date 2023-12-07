@@ -10,6 +10,7 @@ function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
     fetch("https://blog-app-ten-ebon.vercel.app/profile", {
+      method: "GET",
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
