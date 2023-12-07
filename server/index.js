@@ -70,10 +70,12 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         else {
-          res.cookie("token", token, { sameSite: "None", secure: true }).json({
-            id: userDoc._id,
-            username,
-          });
+          res
+            .cookie("token", token, { sameSite: "None", secure: isProduction })
+            .json({
+              id: userDoc._id,
+              username,
+            });
         }
       }
     );
