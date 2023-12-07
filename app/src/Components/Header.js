@@ -30,16 +30,20 @@ function Header() {
       }
     };
 
-    const storedToken = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("token="))
-      ?.split("=")[1];
+    const checkTokenAndFetchUserInfo = async () => {
+      const storedToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
 
-    console.log("Stored token:", storedToken);
+      console.log("Stored token:", storedToken);
 
-    if (storedToken) {
-      fetchUserInfo();
-    }
+      if (storedToken) {
+        await fetchUserInfo();
+      }
+    };
+
+    checkTokenAndFetchUserInfo();
   }, []);
 
   function logout() {
