@@ -7,11 +7,6 @@ const multer = require("multer");
 const path = require("path");
 const cheerio = require("cheerio");
 
-var redis = require("redis");
-var JWTR = require("jwt-redis").default;
-var redisClient = redis.createClient();
-var jwtr = new JWTR(redisClient);
-
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "https://bloggerhub.vercel.app");
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
