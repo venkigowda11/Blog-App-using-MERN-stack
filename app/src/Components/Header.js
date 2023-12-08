@@ -74,7 +74,20 @@ function Header() {
             </>
           )}
         </>
-        {loading ? <p className="loading">Loading...</p> : ""}
+        {loading ? (
+          <p
+            style={{
+              textAlign: "center",
+              marginTop: "20px",
+              fontSize: "16px",
+              color: "#555",
+            }}
+          >
+            Loading...
+          </p>
+        ) : (
+          ""
+        )}
       </nav>
     </header>
   );
