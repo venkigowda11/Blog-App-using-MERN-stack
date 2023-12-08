@@ -74,7 +74,7 @@ function Header() {
             </>
           )}
         </>
-        {loading ? <p>Loading...</p> : ""}
+        {loading ? <p className="loading">Loading...</p> : ""}
       </nav>
     </header>
   );
