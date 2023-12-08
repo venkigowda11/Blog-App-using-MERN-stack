@@ -178,5 +178,5 @@ app.put("/post", async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  res.status(202).clearCookie("auth-token").send("cookie cleared");
+  res.clearCookie("token").json("Logged out");
 });
