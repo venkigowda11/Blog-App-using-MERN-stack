@@ -94,7 +94,7 @@ app.get("/profile", (req, res) => {
     return res.status(401).json("Unauthorized");
   }
 
-  jwt.verify(token, secret, { ignoreExpiration: false }, (err, info) => {
+  jwt.verify(token, secret, (err, info) => {
     if (err) {
       console.error("Token verification error:", err);
       return res.status(401).json("Unauthorized");
