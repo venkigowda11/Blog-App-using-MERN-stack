@@ -74,21 +74,21 @@ function Header() {
             </>
           )}
         </>
-        {loading ? (
-          <p
-            style={{
-              textAlign: "center",
-              marginTop: "20px",
-              fontSize: "16px",
-              color: "#555",
-            }}
-          >
-            Loading...
-          </p>
-        ) : (
-          ""
-        )}
       </nav>
+      {loading ? (
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: "20px",
+            fontSize: "16px",
+            color: "#555",
+          }}
+        >
+          Loading...
+        </p>
+      ) : (
+        ""
+      )}
     </header>
   );
 }
