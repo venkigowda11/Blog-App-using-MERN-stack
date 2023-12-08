@@ -71,10 +71,15 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         else {
-          res.cookie("token", token, { sameSite: "None", secure: true }).json({
-            id: userDoc._id,
-            username,
-          });
+          res
+            .cookie("token", token, {
+              path: "/",
+              domain: "https://bloggerhub.vercel.app",
+            })
+            .json({
+              id: userDoc._id,
+              username,
+            });
         }
       }
     );
@@ -178,5 +183,10 @@ app.put("/post", async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  res.clearCookie("token").json("Logged out");
+  res
+    .clearCookie("token", {
+      path: "/",
+      domain: "https://bloggerhub.vercel.app",
+    })
+    .json("Logged out");
 });
