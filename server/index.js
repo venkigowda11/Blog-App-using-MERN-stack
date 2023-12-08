@@ -181,5 +181,5 @@ app.put("/post", async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  res.cookie("token", "").json("ok");
+  res.cookie("token", "").json("logged out");
 });
