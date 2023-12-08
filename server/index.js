@@ -74,7 +74,7 @@ app.post("/login", async (req, res) => {
           res
             .cookie("token", token, {
               path: "/",
-              domain: "blog-server-coral.vercel.app",
+              domain: "bloggerhub.vercel.app",
             })
             .json({
               id: userDoc._id,
@@ -186,7 +186,7 @@ app.post("/logout", (req, res) => {
   res
     .clearCookie("token", {
       path: "/",
-      domain: "blog-server-coral.vercel.app",
+      domain: "bloggerhub.vercel.app",
     })
     .json("Logged out");
 });
