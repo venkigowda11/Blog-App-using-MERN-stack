@@ -39,7 +39,7 @@ function Header() {
         method: "POST",
       });
       setUserInfo(null);
-      navigate("");
+      navigate("/");
       window.location.reload();
     } catch (error) {
       console.error("Logout error:", error);
