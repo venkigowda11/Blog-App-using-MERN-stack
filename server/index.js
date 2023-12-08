@@ -15,7 +15,7 @@ var jwtr = new JWTR(redisClient);
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://blog-app-ten-ebon.vercel.app.com"
+    "https://bloggerhub.vercel.app.com"
   );
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 app.use(
   cors({
     credentials: true,
-    origin: ["https://blog-app-frontend-three.vercel.app"],
+    origin: ["https://bloggerhub.vercel.app"],
     methods: ["POST", "GET", "PUT"],
     allowedHeaders: "Content-Type",
   })

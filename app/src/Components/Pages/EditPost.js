@@ -15,7 +15,7 @@ function EditPost() {
   const [urlC, setUrlC] = useState("");
 
   useEffect(() => {
-    fetch("https://blog-app-ten-ebon.vercel.app/post/" + id)
+    fetch("https://blog-server-coral.vercel.app/post/" + id)
       .then((response) => response.json())
       .then((postInfo) => {
         setTitle(postInfo.title);
@@ -51,7 +51,7 @@ function EditPost() {
 
     try {
       const response = await fetch(
-        "https://blog-app-ten-ebon.vercel.app/post",
+        "https://blog-server-coral.vercel.app/post",
         {
           method: "PUT",
           headers: {

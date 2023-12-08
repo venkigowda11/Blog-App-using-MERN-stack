@@ -10,7 +10,7 @@ function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`https://blog-app-ten-ebon.vercel.app/post/${id}`).then(
+    fetch(`https://blog-server-coral.vercel.app/post/${id}`).then(
       (response) => {
         response.json().then((postInfo) => {
           setPostInfo(postInfo);

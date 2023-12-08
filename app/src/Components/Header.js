@@ -13,7 +13,7 @@ function Header() {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://blog-app-ten-ebon.vercel.app/profile",
+          "https://blog-server-coral.vercel.app/profile",
           {
             method: "GET",
             credentials: "include",
@@ -34,7 +34,7 @@ function Header() {
 
   async function logout() {
     try {
-      await fetch("https://blog-app-ten-ebon.vercel.app/logout", {
+      await fetch("https://blog-server-coral.vercel.app/logout", {
         credentials: "include",
         method: "POST",
       });

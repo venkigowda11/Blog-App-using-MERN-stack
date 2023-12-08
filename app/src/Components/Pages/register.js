@@ -8,7 +8,7 @@ function Register() {
   async function regist(e) {
     e.preventDefault();
     const response = await fetch(
-      "https://blog-app-ten-ebon.vercel.app/register",
+      "https://blog-server-coral.vercel.app/register",
       {
         method: "POST",
         body: JSON.stringify({ username, password }),

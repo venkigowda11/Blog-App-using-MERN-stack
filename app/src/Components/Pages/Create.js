@@ -28,7 +28,7 @@ export default function Create() {
     const { url } = uploadResJson;
     const urlC = url;
 
-    const response = await fetch("https://blog-app-ten-ebon.vercel.app/post", {
+    const response = await fetch("https://blog-server-coral.vercel.app/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
