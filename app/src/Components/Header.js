@@ -39,7 +39,7 @@ function Header() {
         method: "POST",
       });
       setUserInfo(null);
-      localStorage.clear();
+      navigate("");
     } catch (error) {
       console.error("Logout error:", error);
     }
