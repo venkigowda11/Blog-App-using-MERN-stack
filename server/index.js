@@ -4,6 +4,9 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
 
+app.use(express.json());
+app.use(cookieParser());
+
 const path = require("path");
 const cheerio = require("cheerio");
 
@@ -21,9 +24,6 @@ app.use(
     allowedHeaders: "Content-Type",
   })
 );
-
-app.use(express.json());
-app.use(cookieParser());
 
 const mongoose = require("mongoose");
 const User = require("./models/User");
@@ -62,7 +62,7 @@ app.post("/login", async (req, res) => {
     jwt.sign(
       { username, id: userDoc._id },
       secret,
-      { expiresIn: "1h" },
+      { expiresIn: "2h" },
       (err, token) => {
         if (err) throw err;
         else {
