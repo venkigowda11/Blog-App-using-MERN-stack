@@ -66,7 +66,7 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         else {
-          res.cookie("token", token, { secure: true }).json({
+          res.cookie("token", token, { sameSite: "None", secure: true }).json({
             id: userDoc._id,
             username,
             token,
