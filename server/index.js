@@ -80,7 +80,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  const token = req.cookies.token;
+  const token = req.cookies;
 
   if (!token) {
     console.error("No token found in cookies");
