@@ -12,7 +12,6 @@ function Header() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         const response = await fetch(
           "https://blog-server-coral.vercel.app/profile",
           {
@@ -23,6 +22,7 @@ function Header() {
 
         const userData = await response.json();
         setUserInfo(userData);
+        setLoading(true);
       } catch (error) {
         console.error(error);
       } finally {
