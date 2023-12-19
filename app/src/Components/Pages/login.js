@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 
-function Login() {
+function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setDirect] = useState(false);
@@ -15,6 +15,7 @@ function Login() {
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
       credentials: "include",
+      redirect: "follow",
     });
     if (response.ok) {
       response.json().then((userInfo) => {
@@ -26,7 +27,7 @@ function Login() {
     }
   }
   if (redirect) {
-    return <Navigate to="/" />;
+    return <Navigate to={"/"} />;
   }
   return (
     <form className="login" onSubmit={login}>
@@ -47,4 +48,4 @@ function Login() {
     </form>
   );
 }
-export default Login;
+export default LoginPage;
