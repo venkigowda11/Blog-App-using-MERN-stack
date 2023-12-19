@@ -2,6 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
+import "../App.css";
 
 function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
@@ -48,47 +49,38 @@ function Header() {
   const username = userInfo?.username;
 
   return (
-    <header>
-      <Link to="/" className="logo">
-        Blogger
-      </Link>
-      <nav>
-        <>
-          {username && (
-            <>
-              <span
-                className="hello"
-                style={{ marginRight: "30px", color: "#706F5E" }}
-              >
-                Hello {username}
-              </span>
-              <Link to="/create">Create Post</Link>
-              <Link onClick={logout}>Logout</Link>
-            </>
-          )}
-          {!username && (
-            <>
-              <Link to="/login">Login</Link>
-              <Link to="/register">Register</Link>
-            </>
-          )}
-        </>
-      </nav>
-      {loading ? (
-        <p
-          style={{
-            textAlign: "center",
-            marginTop: "20px",
-            fontSize: "16px",
-            color: "#555",
-          }}
-        >
-          Loading...
-        </p>
-      ) : (
-        ""
-      )}
-    </header>
+    <>
+      <header>
+        <Link to="/" className="logo">
+          Blogger
+        </Link>
+        <nav>
+          <>
+            {username && (
+              <>
+                <span
+                  className="hello"
+                  style={{ marginRight: "30px", color: "#706F5E" }}
+                >
+                  Hello {username}
+                </span>
+                <Link to="/create">Create Post</Link>
+                <Link onClick={logout}>Logout</Link>
+              </>
+            )}
+            {!username && (
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>
+            )}
+          </>
+        </nav>
+      </header>
+      <div className="loading-container">
+        {loading ? <p className="loading">Loading...</p> : ""}
+      </div>
+    </>
   );
 }
 export default Header;
