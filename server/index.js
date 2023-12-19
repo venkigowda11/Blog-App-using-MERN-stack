@@ -10,16 +10,20 @@ app.use(cookieParser());
 const path = require("path");
 const cheerio = require("cheerio");
 
-const corsOptions = {
-  credentials: true,
-  methods: ["POST", "GET", "PUT"],
-  origin: "https://bloggerhub.vercel.app",
-  allowedHeaders: "Content-Type",
-};
-
-app.use(cors(corsOptions));
-
-app.use(cors({ credentials: true, origin: "*" }));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://bloggerhub.vercel.app");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+app.use(
+  cors({
+    credentials: true,
+    origin: ["https://bloggerhub.vercel.app"],
+    methods: ["POST", "GET", "PUT"],
+    allowedHeaders: "Content-Type",
+  })
+);
 
 const mongoose = require("mongoose");
 const User = require("./models/User");
@@ -62,14 +66,12 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         else {
-          console.log("Set-Cookie Header:", res.get("Set-Cookie"));
-          res.cookie("token", token).json({
+          res.cookie("token", token, { secure: true }).json({
             id: userDoc._id,
             username,
             token,
           });
         }
-        console.log(req.headers);
       }
     );
   } else {
