@@ -10,12 +10,16 @@ app.use(cookieParser());
 const path = require("path");
 const cheerio = require("cheerio");
 
-app.use(
-  cors({
-    credentials: true,
-    methods: ["POST", "GET", "PUT"],
-  })
-);
+const corsOptions = {
+  credentials: true,
+  methods: ["POST", "GET", "PUT"],
+  origin: "https://bloggerhub.vercel.app",
+  allowedHeaders: "Content-Type",
+};
+
+app.use(cors(corsOptions));
+
+app.use(cors({ credentials: true, origin: "*" }));
 
 const mongoose = require("mongoose");
 const User = require("./models/User");
