@@ -66,18 +66,11 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         else {
-          res
-            .cookie("token", token, {
-              domain: ".vercel.app",
-              secure: true,
-              httpOnly: true,
-              sameSite: "None",
-              path: "/",
-            })
-            .json({
-              id: userDoc._id,
-              username,
-            });
+          res.cookie("token", token, { secure: true }).json({
+            id: userDoc._id,
+            username,
+            token,
+          });
         }
       }
     );
