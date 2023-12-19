@@ -66,10 +66,12 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         else {
-          res.cookie("token", token).json({
-            id: userDoc._id,
-            username,
-          });
+          res
+            .cookie("token", token, { domain: "https://bloggerhub.vercel.app" })
+            .json({
+              id: userDoc._id,
+              username,
+            });
         }
       }
     );
