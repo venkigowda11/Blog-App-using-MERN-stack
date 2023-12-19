@@ -178,6 +178,8 @@ app.post("/logout", (req, res) => {
     .cookie("token", "", {
       expires: new Date(0),
       path: "/",
+      secure: true,
+      sameSite: "None",
     })
     .json("Logged out");
 });
