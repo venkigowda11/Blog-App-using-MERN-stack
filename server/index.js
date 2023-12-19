@@ -58,12 +58,14 @@ app.post("/login", async (req, res) => {
       (err, token) => {
         if (err) throw err;
         else {
-          res.cookie("token", token, { secure: true }).json({
+          console.log("Set-Cookie Header:", res.get("Set-Cookie"));
+          res.cookie("token", token).json({
             id: userDoc._id,
             username,
             token,
           });
         }
+        console.log(req.headers);
       }
     );
   } else {
