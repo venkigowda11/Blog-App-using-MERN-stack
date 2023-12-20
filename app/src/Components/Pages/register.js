@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../../App.css";
 
 function Register() {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ function Register() {
         value={password}
         onChange={(ev) => setPassword(ev.target.value)}
       />
-      <button>Register</button>
+      <button className="authbtn">Register</button>
     </form>
   );
 }

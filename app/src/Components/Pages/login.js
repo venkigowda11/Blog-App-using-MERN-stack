@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
+import "../../App.css";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -44,7 +45,7 @@ function LoginPage() {
         value={password}
         onChange={(ev) => setPassword(ev.target.value)}
       />
-      <button>Login</button>
+      <button className="authbtn">Login</button>
     </form>
   );
 }

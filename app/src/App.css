@@ -85,7 +85,7 @@ input:focus {
   outline: none;
   border: 2px solid rgb(146, 146, 173);
 }
-button {
+.authbtn {
   width: 100%;
   padding: 5px;
   border-radius: 5px;
