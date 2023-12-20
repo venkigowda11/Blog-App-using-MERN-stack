@@ -4,6 +4,35 @@ import "react-quill/dist/quill.snow.css";
 import { Navigate } from "react-router-dom";
 import "../../App.css";
 
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["link", "image"],
+    ["clean"],
+  ],
+};
+
+const formats = [
+  "header",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "image",
+];
+
 export default function Create() {
   const [title, setTitle] = useState();
   const [summary, setSummary] = useState();
@@ -11,21 +40,6 @@ export default function Create() {
   const [file, setFile] = useState();
   const [redirect, setRedirect] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
-      ["link", "image"],
-      ["clean"],
-    ],
-  };
 
   async function createNew(ev) {
     const data1 = new FormData();
@@ -96,6 +110,7 @@ export default function Create() {
         value={contentC}
         onChange={(newValue) => setContent(newValue)}
         modules={modules}
+        formats={formats}
       />
       <button style={{ marginTop: "10px" }} className="authbtn">
         Create a Post
