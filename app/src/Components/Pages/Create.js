@@ -16,6 +16,11 @@ export default function Create() {
     data1.append("upload_preset", "uploads");
     ev.preventDefault();
 
+    if (!title || !summary || !contentC || !file) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     const uploadRes = await fetch(
       "https://api.cloudinary.com/v1_1/dvfua7glr/image/upload",
       {
