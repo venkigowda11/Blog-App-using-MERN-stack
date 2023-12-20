@@ -12,6 +12,21 @@ export default function Create() {
   const [redirect, setRedirect] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
+
   async function createNew(ev) {
     const data1 = new FormData();
     data1.append("file", file);
@@ -80,6 +95,7 @@ export default function Create() {
       <ReactQuill
         value={contentC}
         onChange={(newValue) => setContent(newValue)}
+        modules={modules}
       />
       <button style={{ marginTop: "10px" }} className="authbtn">
         Create a Post
