@@ -2,6 +2,7 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Navigate } from "react-router-dom";
+import "../../App.css";
 
 export default function Create() {
   const [title, setTitle] = useState();
@@ -55,7 +56,7 @@ export default function Create() {
     }
   }
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="loading">Loading...</p>;
   }
 
   if (redirect) {
