@@ -81,7 +81,9 @@ export default function Create() {
         value={contentC}
         onChange={(newValue) => setContent(newValue)}
       />
-      <button style={{ marginTop: "10px" }}>Create a Post</button>
+      <button style={{ marginTop: "10px" }} className="authbtn">
+        Create a Post
+      </button>
     </form>
   );
 }

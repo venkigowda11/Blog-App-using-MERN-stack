@@ -97,7 +97,9 @@ function EditPost() {
         value={contentC}
         onChange={(newValue) => setContent(newValue)}
       />
-      <button style={{ marginTop: "10px" }}>update Post</button>
+      <button style={{ marginTop: "10px" }} className="authbtn">
+        update Post
+      </button>
     </form>
   );
 }
