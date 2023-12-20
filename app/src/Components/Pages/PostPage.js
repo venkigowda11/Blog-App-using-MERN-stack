@@ -64,10 +64,7 @@ function PostPage() {
       <div className="image">
         <img src={postInfo.url} alt="" />
       </div>
-      <div
-        className="content"
-        dangerouslySetInnerHTML={{ __html: postInfo.content }}
-      />
+      <div dangerouslySetInnerHTML={{ __html: postInfo.content }} />
     </div>
   );
 }
