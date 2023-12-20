@@ -98,7 +98,6 @@ export default function Create() {
         theme={"snow"}
         modules={modules}
       />
-
       <button style={{ marginTop: "10px" }} className="authbtn">
         Create a Post
       </button>
