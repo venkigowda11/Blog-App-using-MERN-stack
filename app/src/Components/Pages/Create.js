@@ -56,7 +56,7 @@ export default function Create() {
     }
   }
   if (loading) {
-    return <p>Loading...</p>;
+    return <p>Posting...</p>;
   }
 
   if (redirect) {
