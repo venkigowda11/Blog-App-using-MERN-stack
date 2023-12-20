@@ -112,6 +112,7 @@ export default function Create() {
         modules={modules}
         formats={formats}
       />
+      <div dangerouslySetInnerHTML={{ __html: contentC }} />
       <button style={{ marginTop: "10px" }} className="authbtn">
         Create a Post
       </button>
