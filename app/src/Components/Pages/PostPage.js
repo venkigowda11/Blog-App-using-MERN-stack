@@ -65,7 +65,7 @@ function PostPage() {
         <img src={postInfo.url} alt="" />
       </div>
       <div
-        className="ql-editor"
+        className="content"
         dangerouslySetInnerHTML={{ __html: postInfo, content }}
       />
     </div>
