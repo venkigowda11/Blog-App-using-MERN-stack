@@ -12,7 +12,7 @@ const cheerio = require("cheerio");
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "https://bloggerhub.vercel.app");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
@@ -20,7 +20,7 @@ app.use(
   cors({
     credentials: true,
     origin: ["https://bloggerhub.vercel.app"],
-    methods: ["POST", "GET", "PUT"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
     allowedHeaders: "Content-Type",
   })
 );
@@ -182,4 +182,38 @@ app.post("/logout", (req, res) => {
       sameSite: "None",
     })
     .json("Logged out");
+});
+
+// ...
+
+app.delete("/post/:id", async (req, res) => {
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, async (err, info) => {
+    if (err) {
+      console.error("Token verification error:", err);
+      return res.status(401).json("Unauthorized");
+    }
+
+    const { id } = req.params;
+
+    try {
+      const postDoc = await Post.findById(id);
+
+      if (!postDoc) {
+        return res.status(404).json({ error: "Post not found" });
+      }
+
+      if (JSON.stringify(postDoc.author) !== JSON.stringify(info.id)) {
+        return res
+          .status(403)
+          .json({ error: "Unauthorized to delete this post" });
+      }
+
+      await Post.findByIdAndDelete(id);
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting post:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
 });

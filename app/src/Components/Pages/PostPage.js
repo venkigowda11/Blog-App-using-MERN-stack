@@ -1,6 +1,6 @@
 /* eslint-disable*/
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
 import { UserContext } from "../../UserContext";
 import { Link } from "react-router-dom";
@@ -9,6 +9,8 @@ function PostPage() {
   const { userInfo } = useContext(UserContext);
   const [postInfo, setPostInfo] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch(`https://blog-server-coral.vercel.app/post/${id}`).then(
       (response) => {
@@ -18,6 +20,25 @@ function PostPage() {
       }
     );
   }, []);
+  const handleDelete = () => {
+    fetch(`https://blog-server-coral.vercel.app/post/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.ok) {
+          navigate("/");
+        } else {
+          console.error("Failed to delete the post");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting the post:", error);
+      });
+  };
   if (!postInfo) return "";
 
   return (
@@ -32,6 +53,9 @@ function PostPage() {
           <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
             Edit this post
           </Link>
+          <button className="delete-btn" onClick={handleDelete}>
+            Delete this post
+          </button>
         </div>
       )}
       <div className="edit-row">
