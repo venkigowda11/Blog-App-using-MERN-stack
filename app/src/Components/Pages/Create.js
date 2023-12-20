@@ -2,6 +2,7 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Navigate } from "react-router-dom";
+import "../../App.css";
 
 export default function Create() {
   const [title, setTitle] = useState();
@@ -9,6 +10,7 @@ export default function Create() {
   const [contentC, setContent] = useState();
   const [file, setFile] = useState();
   const [redirect, setRedirect] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function createNew(ev) {
     const data1 = new FormData();
@@ -20,6 +22,8 @@ export default function Create() {
       alert("Please fill in all required fields.");
       return;
     }
+
+    setLoading(true);
 
     const uploadRes = await fetch(
       "https://api.cloudinary.com/v1_1/dvfua7glr/image/upload",
@@ -41,12 +45,24 @@ export default function Create() {
       body: JSON.stringify({ title, summary, contentC, urlC }),
       credentials: "include",
     });
+
     console.log(url);
     console.log(response);
+
+    setLoading(false);
+
     if (response.ok) {
       setRedirect(true);
     }
   }
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <p className="loading">Loading...</p>
+      </div>
+    );
+  }
+
   if (redirect) {
     return <Navigate to="/" />;
   }
