@@ -4,35 +4,6 @@ import "react-quill/dist/quill.snow.css";
 import { Navigate } from "react-router-dom";
 import "../../App.css";
 
-const modules = {
-  toolbar: [
-    [{ header: [1, 2, false] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image"],
-    ["clean"],
-  ],
-};
-
-const formats = [
-  "header",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-];
-
 export default function Create() {
   const [title, setTitle] = useState();
   const [summary, setSummary] = useState();
@@ -109,8 +80,6 @@ export default function Create() {
       <ReactQuill
         value={contentC}
         onChange={(newValue) => setContent(newValue)}
-        modules={modules}
-        formats={formats}
       />
       <div dangerouslySetInnerHTML={{ __html: contentC }} />
       <button style={{ marginTop: "10px" }} className="authbtn">
