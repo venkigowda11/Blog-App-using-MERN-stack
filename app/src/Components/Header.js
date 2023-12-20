@@ -41,7 +41,7 @@ function Header() {
       });
       setUserInfo(null);
       navigate("/");
-      window.location.reload(true);
+      window.location.reload();
     } catch (error) {
       console.error("Logout error:", error);
     }
