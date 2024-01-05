@@ -251,3 +251,9 @@ div.content li {
   font-weight: bold;
   text-transform: capitalize;
 }
+header {
+  margin-bottom: 30px;
+}
+.post {
+  margin-bottom: 20px;
+}
