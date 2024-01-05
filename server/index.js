@@ -126,13 +126,14 @@ app.get("/post/:id", async (req, res) => {
 
 app.post("/post", async (req, res) => {
   const { token } = req.cookies;
+  console.log("Request Body:", req.body);
+
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
     const { title, summary, contentC, urlC } = req.body;
 
     const url = urlC.replace(/['"]/g, "");
 
-    console.log(content, url);
     const postDoc = await Post.create({
       title,
       summary,
