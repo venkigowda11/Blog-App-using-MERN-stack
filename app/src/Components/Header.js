@@ -63,7 +63,7 @@ function Header() {
                   className="hello"
                   style={{ marginRight: "30px", color: "#706F5E" }}
                 >
-                  Hello {username}
+                  Hello <span className="username">{username}</span>
                 </span>
                 <Link to="/create" className="after-login">
                   Create Post
