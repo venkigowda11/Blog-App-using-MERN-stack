@@ -130,17 +130,13 @@ app.post("/post", async (req, res) => {
     if (err) throw err;
     const { title, summary, contentC, urlC } = req.body;
 
-    const contentEdit = contentC;
-    const $ = cheerio.load(contentEdit);
-    const content = $.text();
-
     const url = urlC.replace(/['"]/g, "");
 
     console.log(content, url);
     const postDoc = await Post.create({
       title,
       summary,
-      content,
+      content: contentC,
       url,
       author: info.id,
     });
@@ -155,10 +151,6 @@ app.put("/post", async (req, res) => {
 
     const { id, title, summary, contentC, urlC } = req.body;
 
-    const contentEdit = contentC;
-    const $ = cheerio.load(contentEdit);
-    const content = $.text();
-
     const urlU = urlC.replace(/['"]/g, "");
 
     const postDoc = await Post.findById(id);
@@ -166,7 +158,7 @@ app.put("/post", async (req, res) => {
     await postDoc.updateOne({
       title,
       summary,
-      content,
+      content: contentC,
       url: urlU ? urlU : postDoc.url,
     });
     res.json({ isAuthor, postDoc, info });

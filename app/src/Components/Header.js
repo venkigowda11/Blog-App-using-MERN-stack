@@ -65,14 +65,22 @@ function Header() {
                 >
                   Hello {username}
                 </span>
-                <Link to="/create">Create Post</Link>
-                <Link onClick={logout}>Logout</Link>
+                <Link to="/create" className="after-login">
+                  Create Post
+                </Link>
+                <Link onClick={logout} className="after-login">
+                  Logout
+                </Link>
               </>
             )}
             {!username && (
               <>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
+                <Link to="/login" className="auth-btn">
+                  Login
+                </Link>
+                <Link to="/register" className="auth-btn">
+                  Register
+                </Link>
               </>
             )}
           </>
