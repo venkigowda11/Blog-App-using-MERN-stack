@@ -5,7 +5,7 @@ function Myblog() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/myblog", {
+    fetch("https://blog-server-coral.vercel.app/myblog", {
       credentials: "include",
     }).then((response) => {
       response.json().then((post) => {
