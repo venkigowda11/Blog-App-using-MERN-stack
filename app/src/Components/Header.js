@@ -2,7 +2,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserContext";
-import "../App.css";
 
 function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
@@ -12,13 +11,10 @@ function Header() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://blog-server-coral.vercel.app/profile",
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
+        const response = await fetch("http://localhost:4000/profile", {
+          method: "GET",
+          credentials: "include",
+        });
 
         const userData = await response.json();
         setUserInfo(userData);
@@ -35,7 +31,7 @@ function Header() {
 
   async function logout() {
     try {
-      await fetch("https://blog-server-coral.vercel.app/logout", {
+      await fetch("http://localhost:4000/logout", {
         credentials: "include",
         method: "POST",
       });
@@ -53,8 +49,21 @@ function Header() {
     <>
       <header>
         <Link to="/" className="logo">
-          Blogger
+          BLOGGER
         </Link>
+        <div className="myblog">
+          <Link to="/" className="middle">
+            All BLOGS
+          </Link>
+          {username && (
+            <>
+              <div className="dash">|</div>
+              <Link to="/myblogs" className="middle">
+                MY BLOGS
+              </Link>
+            </>
+          )}
+        </div>
         <nav>
           <>
             {username && (
@@ -86,6 +95,7 @@ function Header() {
           </>
         </nav>
       </header>
+
       <div className="loading-container">
         {loading ? <p className="loading">Loading...</p> : ""}
       </div>

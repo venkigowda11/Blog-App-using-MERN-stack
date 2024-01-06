@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
-import "../../App.css";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -11,7 +10,7 @@ function LoginPage() {
 
   async function login(ev) {
     ev.preventDefault();
-    const response = await fetch("https://blog-server-coral.vercel.app/login", {
+    const response = await fetch("http://localhost:4000/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
@@ -24,7 +23,15 @@ function LoginPage() {
         setDirect(true);
       });
     } else {
-      alert("Wrong Credentials");
+      const errorMessage = await response.json();
+
+      if (errorMessage === "Wrong username") {
+        alert("Wrong username");
+      } else if (errorMessage === "Wrong password") {
+        alert("Wrong password");
+      } else {
+        alert("Unexpected error occurred");
+      }
     }
   }
   if (redirect) {

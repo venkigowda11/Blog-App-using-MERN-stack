@@ -106,6 +106,33 @@ app.get("/post", async (req, res) => {
   res.json(posts);
 });
 
+app.get("/myblog", async (req, res) => {
+  const { token } = req.cookies;
+
+  if (!token) {
+    console.error("No token found in cookies");
+    return res.status(401).json("Unauthorized");
+  }
+
+  jwt.verify(token, secret, async (err, info) => {
+    if (err) {
+      console.error("Token verification error:", err);
+      return res.status(401).json("Unauthorized");
+    }
+
+    try {
+      const userPosts = await Post.find({ author: info.id })
+        .populate("author", ["username"])
+        .sort({ createdAt: -1 });
+
+      res.json(userPosts);
+    } catch (error) {
+      console.error("Error fetching user's posts:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+});
+
 app.get("/post/:id", async (req, res) => {
   const { id } = req.params;
   try {

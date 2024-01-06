@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../App.css";
 
 function Register() {
   const navigate = useNavigate();
@@ -8,14 +7,17 @@ function Register() {
   const [password, setPassword] = useState("");
   async function regist(e) {
     e.preventDefault();
-    const response = await fetch(
-      "https://blog-server-coral.vercel.app/register",
-      {
-        method: "POST",
-        body: JSON.stringify({ username, password }),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+
+    if (!username || !password) {
+      alert("Please enter both username and password");
+      return;
+    }
+
+    const response = await fetch("http://localhost:4000/register", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+      headers: { "Content-Type": "application/json" },
+    });
     if (response.status === 200) {
       alert("Registration succesfull");
       navigate("/login");
