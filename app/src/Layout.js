@@ -5,7 +5,9 @@ export default function Layout() {
   return (
     <main>
       <Header />
-      <Outlet />
+      <div className="blogs">
+        <Outlet />
+      </div>
     </main>
   );
 }
