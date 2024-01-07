@@ -401,7 +401,7 @@ div.content li {
     display: flex;
     flex-direction: column;
     font-size: 16px;
-    gap: 8px;
+    gap: 15px;
   }
   .middle {
     font-size: 15px;
