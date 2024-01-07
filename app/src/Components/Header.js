@@ -11,10 +11,13 @@ function Header() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/profile", {
-          method: "GET",
-          credentials: "include",
-        });
+        const response = await fetch(
+          "https://blog-server-coral.vercel.app/profile",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
         const userData = await response.json();
         setUserInfo(userData);
@@ -31,7 +34,7 @@ function Header() {
 
   async function logout() {
     try {
-      await fetch("http://localhost:4000/logout", {
+      await fetch("https://blog-server-coral.vercel.app/logout", {
         credentials: "include",
         method: "POST",
       });
