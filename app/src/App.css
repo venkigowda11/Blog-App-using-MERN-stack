@@ -8,6 +8,7 @@ body {
 main {
   width: 100%;
   box-sizing: border-box;
+  background-color: #f0f0f0;
 }
 img {
   max-width: 100%;
@@ -23,6 +24,7 @@ header {
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #ab9c9c;
+  padding-bottom: 30px;
 }
 header {
   margin-bottom: 50px;
@@ -59,6 +61,7 @@ div.post div.texts a {
   margin-bottom: 30px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.4);
   margin-top: 20px;
+  background-color: #ddd;
 }
 
 .post + .post {
@@ -130,7 +133,7 @@ div.post p.info {
 input {
   display: block;
   margin-bottom: 10px;
-  width: 80%;
+  width: 100%;
   padding: 5px 8px;
   border: 2px solid #ddd;
   border-radius: 7px;
@@ -319,9 +322,9 @@ div.content li {
 .middle {
   font-weight: bold;
   font-size: 22px;
-  font-family: monospace;
-  letter-spacing: 4px;
-  color: #8c8e98;
+  font-family: sans-serif;
+  letter-spacing: 2px;
+  color: #4b5481;
 }
 .middle:hover {
   background-color: #8c8e98;
@@ -353,7 +356,7 @@ div.content li {
 .login input,
 .register input {
   display: block;
-  width: 100%;
+  width: 90%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
@@ -418,4 +421,45 @@ div.content li {
     display: flex;
     flex-direction: column;
   }
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e4e5eb;
+  color: #555;
+  padding: 20px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.footer .copyright-info {
+  text-align: center;
+  margin-top: 1px;
+}
+
+.footer .contact-info {
+  text-align: center;
+  margin-top: 6px;
+}
+
+.footer .founder-info {
+  text-align: center;
+  margin-top: 6px;
+  font-style: italic;
+  font-weight: bold;
+  color: #808184;
 }

@@ -3,11 +3,14 @@ import Header from "./Components/Header";
 
 export default function Layout() {
   return (
-    <main>
-      <Header />
-      <div className="blogs">
-        <Outlet />
-      </div>
-    </main>
+    <div className="wrapper">
+      <main>
+        <Header />
+        <div className="blogs">
+          <Outlet />
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }
