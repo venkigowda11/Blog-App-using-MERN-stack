@@ -57,6 +57,11 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const userDoc = await User.findOne({ username });
+
+  if (!userDoc) {
+    return res.status(400).json("Wrong username");
+  }
+
   const passOk = bcrypt.compareSync(password, userDoc.password);
   if (passOk) {
     jwt.sign(
@@ -75,7 +80,7 @@ app.post("/login", async (req, res) => {
       }
     );
   } else {
-    res.status(400).json("Wrong credentials");
+    res.status(400).json("Wrong password");
   }
 });
 

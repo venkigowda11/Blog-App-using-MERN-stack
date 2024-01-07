@@ -25,7 +25,7 @@ function Register() {
       alert("Registration succesfull");
       navigate("/login");
     } else {
-      alert("Failed");
+      alert("Username taken, Try other name");
     }
   }
   return (
