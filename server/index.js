@@ -132,7 +132,7 @@ app.get("/myblog", async (req, res) => {
 
       res.json(userPosts);
     } catch (error) {
-      console.error("Error fetching user's posts:", error);
+      console.error("Error fetching user's post:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   });
