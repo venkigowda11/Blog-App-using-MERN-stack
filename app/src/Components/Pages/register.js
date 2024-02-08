@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
@@ -44,6 +45,9 @@ function Register() {
         onChange={(ev) => setPassword(ev.target.value)}
       />
       <button className="authbtn">Register</button>
+      <p style={{ color: "black", marginTop: "10px" }}>
+        Have an Account? <Link to={"/login"}>Login in here</Link>
+      </p>
     </form>
   );
 }

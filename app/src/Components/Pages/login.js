@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -53,6 +54,9 @@ function LoginPage() {
         onChange={(ev) => setPassword(ev.target.value)}
       />
       <button className="authbtn">Login</button>
+      <p style={{ color: "black", marginTop: "10px" }}>
+        Don't Have an Account? <Link to={"/register"}>Sign up here</Link>
+      </p>
     </form>
   );
 }

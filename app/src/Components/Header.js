@@ -59,7 +59,6 @@ function Header() {
           </Link>
           {username && (
             <>
-              <div className="dash">|</div>
               <Link to="/myblogs" className="middle">
                 MY BLOGS
               </Link>

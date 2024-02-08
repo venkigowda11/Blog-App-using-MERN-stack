@@ -8,14 +8,12 @@ body {
 main {
   width: 100%;
   box-sizing: border-box;
-  background-color: #f0f0f0;
 }
 img {
   max-width: 100%;
   height: auto;
 }
 header {
-  background-color: #e4e5eb;
   box-sizing: border-box;
   margin: 0;
   width: 100%;
@@ -23,11 +21,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #ab9c9c;
-  padding-bottom: 30px;
-}
-header {
-  margin-bottom: 50px;
+  background-color: #ffffffc5;
 }
 .blogs {
   margin: 0 auto;
@@ -61,7 +55,7 @@ div.post div.texts a {
   margin-bottom: 30px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.4);
   margin-top: 20px;
-  background-color: #ddd;
+  background-color: #fdfcfc;
 }
 
 .post + .post {
@@ -146,7 +140,7 @@ input:focus {
 .login,
 .register {
   text-align: center;
-  color: #8c8e98;
+  color: #f0f2fb;
 }
 div.post-page div.image {
   max-height: 400px;
@@ -188,12 +182,16 @@ div.post-page .delete-btn {
   display: inline-block;
   text-decoration: none;
   padding: 11px 16px;
-  background-color: #8c8e98;
+  background-color: #63656c;
   cursor: pointer;
   border: 2px solid;
-  border-radius: 16px;
+  border-radius: 26px;
   color: antiquewhite;
-  width: 150px;
+  transition: background-color 0.3s, border-color 0.3s;
+  width: 140px;
+  box-sizing: border-box;
+  letter-spacing: 1.2px;
+  font-family: "Arial";
 }
 
 div.post-page .delete-btn {
@@ -204,7 +202,7 @@ div.post-page .delete-btn {
 
 div.post-page a.edit-btn:hover,
 div.post-page .delete-btn:hover {
-  background-color: #bcbec8;
+  background-color: #a6a7ac;
   border-color: #bcbec8;
 }
 
@@ -233,84 +231,88 @@ div.content li {
 }
 
 /*Test Colors*/
-
 .auth-btn {
   display: inline-block;
-  padding: 6px 12px;
+  padding: 10px 20px;
   font-size: 16px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border: 2px solid; /* Use a lighter orange color */
-  border-radius: 10px;
+  border: none;
+  border-radius: 25px;
   color: #fff; /* White text color */
-  width: 100px;
-  background-color: #8c8e98; /* Use the lighter orange color for background */
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  margin-left: 25px;
+  width: 120px;
+  background-color: #5f5f6a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  letter-spacing: 1.3px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin: 10px;
 }
 
 .auth-btn:hover {
-  background-color: #bcbec8; /* Adjust the hover color accordingly */
-  border-color: #bcbec8;
+  background-color: #89898e; /* Darker color on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
   margin-left: 20px;
-  color: #4b5481;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  color: #2f2f2f;
+  font-family: Arial, sans-serif;
   letter-spacing: 3px;
   font-size: 28px;
 }
 
 .authbtn {
-  width: 100%;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: #8c8e98;
+  width: 40%;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 40px;
+  background-color: #4c4949;
   color: #fff;
-  border: 2px solid;
-  border-radius: 16px;
   font-size: 18px;
   cursor: pointer;
-  padding: 8px 16px;
-  width: 40%;
+  transition: background-color 0.3s, border-color 0.3s;
 }
+
 .authbtn:hover {
-  background-color: #bcbec8;
+  background-color: #85868c;
   border-color: #bcbec8;
 }
 
 .after-login {
-  border-radius: 5px;
-  background-color: #8c8e98;
-  color: #fff;
-  border: 2px solid;
-  border-radius: 12px;
+  display: inline-block;
+  padding: 10px 20px;
   font-size: 16px;
+  text-align: center;
+  text-decoration: none;
   cursor: pointer;
-  padding: 6px 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
-  width: 110px;
+  border: none;
+  border-radius: 25px;
+  color: #fff; /* White text color */
+  width: 120px;
+  background-color: #5f5f6a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  letter-spacing: 1.3px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin: 10px;
 }
+
 .after-login:hover {
-  background-color: #bcbec8;
-  border-color: #bcbec8;
+  background-color: #89898e; /* Darker color on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .hello {
-  margin-top: 8px;
-  margin-right: 25px;
+  margin-right: 20px;
   white-space: nowrap;
   text-decoration: underline;
   color: #333;
+  margin-top: 20px;
 }
 .username {
-  color: crimson;
+  color: rgb(106, 95, 97);
   font-weight: bold;
   text-transform: capitalize;
 }
@@ -320,21 +322,13 @@ div.content li {
   margin-left: 10%;
 }
 .middle {
-  font-weight: bold;
   font-size: 22px;
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
   letter-spacing: 2px;
-  color: #4b5481;
+  color: #48494d;
 }
 .middle:hover {
-  background-color: #8c8e98;
-  color: #fff;
-  padding: 5px 10px;
-  transition: 0.3s ease-in-out;
-}
-.dash {
-  color: crimson;
-  font-weight: 800;
+  text-decoration: underline;
 }
 .login,
 .register {
@@ -367,19 +361,23 @@ div.content li {
 .register button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #8c8e98;
+  background-color: #52525a;
   color: #fff;
-  border: 2px solid #8c8e98;
-  border-radius: 5px;
+  border: 2px solid #fff;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: none;
+  border-radius: 25px;
+  background-color: #5f5f6a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  letter-spacing: 1.3px;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .login button:hover,
 .register button:hover {
-  background-color: #bcbec8;
-  border-color: #bcbec8;
+  background-color: #838181; /* Darker color on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 .No {
   text-align: center;
@@ -388,10 +386,11 @@ div.content li {
 }
 .hr {
   border: none;
-  height: 2px;
+  height: 1.4px;
   background-color: #ddd;
   width: 80%;
   margin: 0 auto;
+  margin-top: 20px;
 }
 @media screen and (min-width: 100px) and (max-width: 450px) {
   .logo {
@@ -401,7 +400,7 @@ div.content li {
     display: flex;
     flex-direction: column;
     font-size: 16px;
-    gap: 20px;
+    gap: 8px;
   }
   .middle {
     font-size: 15px;
@@ -436,7 +435,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #e4e5eb;
+  background-color: #f9f9ff;
   color: #555;
   padding: 20px;
 }
