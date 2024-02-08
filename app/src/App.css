@@ -243,7 +243,6 @@ div.content li {
   color: #fff; /* White text color */
   width: 120px;
   background-color: #5f5f6a;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
   letter-spacing: 1.3px;
   transition: background-color 0.3s, box-shadow 0.3s;
@@ -252,7 +251,6 @@ div.content li {
 
 .auth-btn:hover {
   background-color: #89898e; /* Darker color on hover */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
@@ -292,7 +290,6 @@ div.content li {
   color: #fff; /* White text color */
   width: 120px;
   background-color: #5f5f6a;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
   letter-spacing: 1.3px;
   transition: background-color 0.3s, box-shadow 0.3s;
@@ -301,7 +298,6 @@ div.content li {
 
 .after-login:hover {
   background-color: #89898e; /* Darker color on hover */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .hello {
@@ -336,7 +332,6 @@ div.content li {
   margin: 50px auto;
   padding: 20px;
   border: 1px solid #ddd;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   border-radius: 10px;
   text-align: center;
@@ -368,7 +363,6 @@ div.content li {
   border: none;
   border-radius: 25px;
   background-color: #5f5f6a;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
   letter-spacing: 1.3px;
   transition: background-color 0.3s, box-shadow 0.3s;
@@ -377,7 +371,6 @@ div.content li {
 .login button:hover,
 .register button:hover {
   background-color: #838181; /* Darker color on hover */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 .No {
   text-align: center;
