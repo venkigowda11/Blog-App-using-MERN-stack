@@ -96,7 +96,7 @@ function Header() {
           </>
         </nav>
       </header>
-
+      <hr className="hr" />
       <div className="loading-container">
         {loading ? <p className="loading">Loading...</p> : ""}
       </div>
