@@ -51,10 +51,10 @@ function PostPage() {
       {userInfo && userInfo.id === postInfo.author._id && (
         <div className="edit-row">
           <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
-            Edit this post
+            Edit
           </Link>
           <button className="delete-btn" onClick={handleDelete}>
-            Delete this post
+            Delete
           </button>
         </div>
       )}
