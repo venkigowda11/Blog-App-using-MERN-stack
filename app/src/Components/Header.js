@@ -7,6 +7,7 @@ function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const { setSearch } = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,31 +41,50 @@ function Header() {
       });
       setUserInfo(null);
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.error("Logout error:", error);
     }
   }
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    navigate("/search");
+  };
+
+  const handleKeyUp = (e) => {
+    if (e.key === "Backspace" && e.target.value === "") {
+      navigate("/");
+    }
+  };
 
   const username = userInfo?.username;
 
   return (
     <>
       <header>
-        <Link to="/" className="logo">
-          BLOGGER
-        </Link>
-        <div className="myblog">
-          <Link to="/" className="middle">
-            All BLOGS
+        <div className="search">
+          <Link to="/" className="logo">
+            BLOGGER
           </Link>
-          {username && (
-            <>
-              <Link to="/myblogs" className="middle">
-                MY BLOGS
-              </Link>
-            </>
-          )}
+          <input
+            className="query"
+            type="text"
+            onChange={handleSearch}
+            placeholder="Search Blogs..."
+            onKeyUp={handleKeyUp}
+          />
         </div>
+        <Link to="/" className="middle">
+          ALL BLOGS
+        </Link>
+        {username && (
+          <>
+            <Link to="/myblogs" className="middle">
+              MY BLOGS
+            </Link>
+          </>
+        )}
+
         <nav>
           <>
             {username && (

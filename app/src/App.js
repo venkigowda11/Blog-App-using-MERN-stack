@@ -9,6 +9,7 @@ import IndexPage from "./Components/IndexPage";
 import PostPage from "./Components/Pages/PostPage";
 import EditPost from "./Components/Pages/EditPost";
 import Myblog from "./Components/Pages/Myblog";
+import Search from "./Components/Pages/Search";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<IndexPage />}></Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/myblogs" element={<Myblog />}></Route>
           <Route path="/create" element={<Create />}></Route>
           <Route path="/post/:id" element={<PostPage />}></Route>

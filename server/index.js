@@ -111,6 +111,23 @@ app.get("/post", async (req, res) => {
   res.json(posts);
 });
 
+app.get("/search", async (req, res) => {
+  const { q } = req.query;
+
+  const search = q ? { content: { $regex: q, $options: "i" } } : {};
+
+  try {
+    const posts = await Post.find(search)
+      .populate("author", ["username"])
+      .sort({ createdAt: -1 })
+      .limit(50);
+
+    res.json(posts);
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 app.get("/myblog", async (req, res) => {
   const { token } = req.cookies;
 

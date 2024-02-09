@@ -385,35 +385,6 @@ div.content li {
   margin: 0 auto;
   margin-top: 20px;
 }
-@media screen and (min-width: 100px) and (max-width: 450px) {
-  .logo {
-    font-size: 20px;
-  }
-  .myblog {
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-    gap: 8px;
-  }
-  .middle {
-    font-size: 15px;
-    letter-spacing: 1px;
-  }
-  .dash {
-    display: none;
-  }
-  .hello {
-    margin-left: 20px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-  }
-  nav {
-    display: flex;
-    flex-direction: column;
-  }
-}
 
 .wrapper {
   min-height: 100vh;
@@ -454,4 +425,68 @@ main {
   font-style: italic;
   font-weight: bold;
   color: #808184;
+}
+.search {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.query {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  width: 110px;
+}
+.query:focus {
+  border-color: #66afe9;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 1);
+}
+@media screen and (min-width: 100px) and (max-width: 650px) {
+  .logo {
+    font-size: 20px;
+  }
+  .myblog {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    gap: 8px;
+  }
+  .search {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .query {
+    display: flex;
+    padding: 10px;
+    font-size: 12px;
+    width: 80px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .middle {
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+  .dash {
+    display: none;
+  }
+  .hello {
+    margin-left: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+  .auth-btn {
+    display: flex;
+    flex-direction: column;
+  }
 }
